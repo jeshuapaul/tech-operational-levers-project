@@ -20,18 +20,18 @@ def lambda_handler(event, context):
 # Index number:  -0-      -1-   -2-
 # Argument pos:  -1-      -2-   -3-
 
-	if ( (len(sys.argv) - 1) == 0 ):
+	if ( len(sys.argv) == 1 ):
 		print("No arguments supplied - not sure which buckets to look for!")
 		print("----------------------")
 		user_input = input("List all buckets instead ? (y/n)\n")
-		if user_input == "Y" or user_input == "y":
+		if user_input.lower() == "y":
 			print("----------------------")
 			print(buckets)
 		else:
 			print("----------------------")
 			print("Ending script.")
 			sys.exit()
-	elif ( (len(sys.argv) - 1) > 0 ):
+	elif ( len(sys.argv) > 1 ):
 		print("Amount of arguments:", len(sys.argv) - 1)
 		print("----------------------")
 		# listing buckets
@@ -40,7 +40,7 @@ def lambda_handler(event, context):
 			for a in sys.argv[1:]:
 				# if the bucket name contains what is in the argument
 				if a in i:
-					count += 1
+					++count
 					print(i)
 				else:
 					pass
